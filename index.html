@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-2.2.4.js"   integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="   crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            var base_url = "https://pokeapi.co/api/v2/pokemon/";
+            //ajax request
+            //get and post means GET it or POST it
+            //use post this way - $.post();
+            
+            //or, more basic w/o the form.
+            //using the jquery object $ and using it's get method.
+            //url, callback with a function parameter that we can use later and what to do with it, and what data type we expect to come back.
+            //this, right here is AJAX
+            for (var i=10; i< 151; i++){
+                //$.get("https://pokeapi.co/api/v2/pokemon/i",function(poke_info){ //the callback responds as soon as we get a result from the url
+                $.get(base_url+i,function(poke_info){ //the callback responds as soon as we get a result from the url
+                    //console.log(poke_info); 
+                    //use jquery to contruct our html, notice the ```` they allow multiple lines.
+                    //wes_info is the object that holds the data from the ajax.
+                      var html_str = `
+                                      
+                                      <img src='${poke_info.sprites.front_shiny}'>
+                                      `;
+                      $('#landing_spot').append(html_str);
+                }
+             ,"json" ); }
+           })
+    </script>
+</head>
+    <body>
+
+        <div id="landing_spot">
+            <!-- name, bio, img -->
+        </div>
+        
+    </body>
+</html>
